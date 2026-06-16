@@ -32,7 +32,13 @@
 /* ─── Reset ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
-body { font-family: var(--font-body); font-size: 16px; color: var(--text-dark); background: var(--white); overflow-x: hidden; cursor: none; }
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+body { font-family: var(--font-body); font-size: 16px; color: var(--text-dark); background: var(--white); cursor: none; }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 ul { list-style: none; }
@@ -367,7 +373,7 @@ input, textarea, select { font-family: inherit; }
 .badge-info strong { display: block; font-size: 13px; font-weight: 700; color: var(--text-dark); }
 .badge-info span { font-size: 11px; color: var(--text-muted); }
 .about-desc { font-size: 16px; color: var(--text-muted); line-height: 1.85; margin-bottom: 16px; }
-.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; overflow: hidden; }
 .about-feature { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
 .about-feature-icon { width: 22px; height: 22px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; font-weight: 700; flex-shrink: 0; }
 
@@ -910,8 +916,15 @@ input, textarea, select { font-family: inherit; }
   .page-hero-desc { font-size: 13px; max-width: 320px; margin: 0 auto 16px; }
   .breadcrumb { justify-content: center; font-size: 12px; }
 
-  .section-title { font-size: clamp(24px, 8vw, 32px) !important; text-align: center; }
-  .about-desc { text-align: center; }
+  .about-features { grid-template-columns: 1fr; gap: 12px; }
+  .about-feature { font-size: 14px; }
+  
+  .ticker { overflow: hidden; max-width: 100vw; }
+  .ticker-track { width: max-content; }
+  
+  /* Prevent any element from causing overflow */
+  * { max-width: 100% !important; box-sizing: border-box !important; }
+  html, body { max-width: 100%; overflow-x: hidden !important; }
   .section-header { margin-bottom: 40px; }
   .cursor, .cursor-follower { display: none; }
   body { cursor: auto; }
